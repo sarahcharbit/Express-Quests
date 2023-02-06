@@ -15,8 +15,8 @@ const welcome = (req, res) => {
 app.get("/", welcome);
 
 const movieHandlers = require("./movieHandlers");
-const validateMovie = require ("./validators");
-const validateUser = require ("./validators");
+const {validateMovie} = require ("./validators");
+const {validateUser} = require ("./validators");
 
 app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
