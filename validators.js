@@ -20,17 +20,20 @@ const validateUser = (req, res, next) => {
     next();
   }
 };
-
+const userSchemaMovie = Joi.object({
+  title: Joi.string().email().max(255).required(),
+  director: Joi.string().max(255).required(),
+});
 const validateMovie = (req, res, next) => {
-    const { firstname, lastname, email } = req.body;
+    const { title, director } = req.body;
   
-    const { error } = userSchema.validate(
-      { firstname, lastname, email },
+    const { error1 } = userSchemaMovie.validate(
+      { title, director},
       { abortEarly: false }
     );
   
-    if (error) {
-      res.status(422).json({ validationErrors: error.details });
+    if (error1) {
+      res.status(422).json({ validationErrors: error1.details });
     } else {
       next();
     }
